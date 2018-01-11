@@ -105,6 +105,12 @@
       <artifactId>guava</artifactId>
       <version>23.6-jre</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/opensymphony/sitemesh -->
+    <dependency>
+      <groupId>opensymphony</groupId>
+      <artifactId>sitemesh</artifactId>
+      <version>2.5-atlassian-11</version>
+    </dependency>
 
   </dependencies>
   <build>
