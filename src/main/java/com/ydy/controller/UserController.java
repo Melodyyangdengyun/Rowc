@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class UserController {
 
     @RequestMapping(value = "go")
     public String test(String name, Model model) {
-        List<String> list = Lists.newArrayList();
+        List<String> list = new ArrayList<>();
         list.add("hahh");
         list.add("hdaw");
         list.add("hdwada");
