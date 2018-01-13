@@ -113,15 +113,29 @@ public class ClothesController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "index";
+        return "idnex3";
     }
 
     @RequestMapping(value = "statistics")
-    public String statistics() {
-        Clothes clothes = new Clothes();
-        clothes.setId("1");
-        Clothes clothes1 = clothesService.get(clothes.getId());
-        System.out.println(clothes1.getId());
-        return "statistics";
+    public String statistics(Clothes clothes) {
+//        clothes.setId("1");
+//        Clothes clothes1 = clothesService.get(clothes.getId());
+//        System.out.println(clothes1.getId());
+        clothes.setColour("黄色");
+        clothes.setCompany("件");
+        clothes.setHead("我");
+        clothes.setLengthd(156);
+        clothes.setManagers("不知道");
+        clothes.setNumberd(5);
+        clothes.setOffice("珠海");
+        clothes.setPaymentState("未收到");
+        clothes.setPhone("18926725135");
+        clothes.setPrice(30);
+        clothes.setRegisterDate(new Date());
+        clothes.setSized("M");
+        clothes.setStyle("短袖");
+        clothes.setTotal(150);
+        clothesService.save(clothes);
+        return "index";
     }
 }

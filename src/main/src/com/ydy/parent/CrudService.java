@@ -1,6 +1,7 @@
 package com.ydy.parent;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author ydy
@@ -29,5 +30,26 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
      */
     public T get(T entity) {
         return dao.get(entity);
+    }
+
+    /**
+     * 保存数据（插入或更新）
+     * @param entity
+     */
+    @Transactional(readOnly = false)
+    public void save(T entity) {
+        if (entity.getIsNewRecord()){
+            entity.preInsert();
+            dao.insert(entity);
+        }else{
+            entity.preUpdate();
+            dao.update(entity);
+        }
+    }
+
+    @Transactional(readOnly = false)
+    public void update(T entity) {
+        entity.preUpdate();
+        dao.update(entity);
     }
 }

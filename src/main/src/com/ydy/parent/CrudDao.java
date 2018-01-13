@@ -19,4 +19,18 @@ public interface CrudDao<T> extends BaseDao{
      * @return
      */
     public T get(T entity);
+
+    /**
+     * 插入数据
+     * @param entity
+     * @return
+     */
+    public void insert(T entity);
+
+    /**
+     * 更新数据
+     * @param entity
+     * @return
+     */
+    public int update(T entity);
 }

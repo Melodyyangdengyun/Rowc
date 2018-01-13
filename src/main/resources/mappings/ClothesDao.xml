@@ -3,7 +3,7 @@
 <mapper namespace="com.ydy.dao.ClothesDao">
     <sql id="clothesColumns">
         a.id AS "id",
-        a.createDate AS createDate,
+        a.createdate AS createDate,
         a.updatedate AS updateDate,
         a.state AS state,
         a.registerdate_d AS registerDate,
@@ -22,10 +22,75 @@
         a.price_d AS price
     </sql>
 
-    <select id="get" resultType="Clothes">
+    <select id="get" resultType="com.ydy.entity.Clothes">
         SELECT
         <include refid="clothesColumns"/>
         FROM clothes_register a
         WHERE a.id = #{id}
     </select>
+
+    <!-- 插入登记 -->
+    <insert id="insert">
+        INSERT INTO clothes_register(
+        id,
+        createdate,
+        updatedate,
+        state,
+        registerdate_d,
+        colour_d,
+        style_d,
+        size_d,
+        length_d,
+        number_d,
+        company_d,
+        total_d,
+        paymentstate_d,
+        office_d,
+        head_d,
+        managers_d,
+        phone_d,
+        price_d
+        ) VALUES (
+        #{id},
+        #{createDate},
+        #{updateDate},
+        #{state},
+        #{registerDate},
+        #{colour},
+        #{style},
+        #{sized},
+        #{lengthd},
+        #{numberd},
+        #{company},
+        #{total},
+        #{paymentState},
+        #{office},
+        #{head},
+        #{managers},
+        #{phone},
+        #{price}
+        )
+    </insert>
+
+    <!-- 更新登记 -->
+    <update id="update">
+        UPDATE clothes_register SET
+            updatedate = #{updatedate},
+            registerdate_d = #{registerDate},
+            colour_d = #{colour},
+            style_d = #{style},
+            size_d = #{size},
+            length_d = #{length},
+            number_d = #{number},
+            company_d = #{company},
+            total_d = #{total_d},
+            paymentstate_d = #{paymentstate},
+            office_d = #{office},
+            head_d = #{head_d},
+            managers_d = #{managers},
+            phone_d = #{phone},
+            price_d = #{price}
+        WHERE id = #{id}
+    </update>
+
 </mapper>
