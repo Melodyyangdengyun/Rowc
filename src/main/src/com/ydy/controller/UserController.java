@@ -37,8 +37,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value="/user/")
 public class UserController {
 
-//    @Autowired
-//    private ClothesService clothesService;
+    @Autowired
+    private ClothesService clothesService;
 
     @RequestMapping(value = "go")
     public String test(String name, Model model) {
@@ -121,9 +121,8 @@ public class UserController {
         Clothes clothes = new Clothes();
         clothes.setId("1");
 //        Clothes clothes1 = clothesService.get(clothes.getId());
-//        Clothes id = clothesService.getId("1");
-//        System.out.println(id.getHead());
-//        System.out.println(clothes1.getHead());
+        String id = clothesService.getId("1");
+        System.out.println(id);
         return "statistics";
     }
 }

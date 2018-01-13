@@ -12,5 +12,5 @@ import org.apache.poi.ss.formula.functions.T;
  */
 @MyBatisDao
 public interface ClothesDao extends CrudDao<Clothes> {
-    Clothes getId(String id);
+    String getId(String id);
 }

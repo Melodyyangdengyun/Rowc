@@ -10,11 +10,7 @@
   <!-- application范围内的参数，存放在ServletContext中 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>
-      <!--加入Spring总体配置文件-->
-      classpath:spring/applicationContext.xml
-      <!-- /WEB-INF/classes/applicationContext.xml,/WEB-INF/classes/spring-srevlet.xml -->
-    </param-value>
+    <param-value>classpath:spring-mybatis.xml</param-value>
   </context-param>
   <!-- Spring监听器 -->
   <listener>

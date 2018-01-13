@@ -19,7 +19,7 @@ public class ClothesService extends CrudService<ClothesDao,Clothes> {
         return super.get(id);
     }
 
-    public Clothes getId(String s) {
+    public String getId(String s) {
         System.out.println(s);
         return dao.getId(s);
     }

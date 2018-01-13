@@ -28,9 +28,10 @@
         WHERE a.id = #{id}
     </select>
 
-    <select id="getId" resultType="com.ydy.entity.Clothes" parameterType="string">
+    <select id="getId" resultType="string" parameterType="string">
         SELECT
-        <include refid="clothesColumns"/>
+        <!--<include refid="clothesColumns"/>-->
+        a.phone_d AS phone
         FROM clothes_register a
         WHERE a.id = #{id}
     </select>
