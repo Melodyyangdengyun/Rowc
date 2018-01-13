@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ydy.dao.ClothesDao">
+    <sql id="clothesColumns">
+        a.id AS "id",
+        a.creatordate AS creatordate,
+        a.updatedate AS updatedate,
+        a.state AS state,
+        a.registerdate_d AS registerdate,
+        a.colour_d AS colour,
+        a.style AS style,
+        a.size_d AS sized,
+        a.length_d AS lengthd,
+        a.number_d AS numberd,
+        a.company_d AS company,
+        a.total_d AS total,
+        a.paymentstate_d AS paymentstate,
+        a.office_d AS office,
+        a.head_d AS head,
+        a.managers_d AS managers,
+        a.phone_d AS phone
+    </sql>
+
+    <select id="get" resultType="com.ydy.entity.Clothes">
+        SELECT
+        <include refid="clothesColumns"/>
+        FROM clothes_register a
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="getId" resultType="com.ydy.entity.Clothes" parameterType="string">
+        SELECT
+        <include refid="clothesColumns"/>
+        FROM clothes_register a
+        WHERE a.id = #{id}
+    </select>
+</mapper>

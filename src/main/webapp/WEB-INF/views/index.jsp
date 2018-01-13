@@ -5,10 +5,11 @@
     <title>出库登记表</title>
 </head>
 <body>
-    <form:form id="searchForm" action="${ctx}/user/upload" method="post" enctype="multipart/form-data">
+    <form:form id="searchForm" action="${ctx}/user/statistics" method="post" enctype="multipart/form-data">
         <input type="file" value="上传" name="excelFile"/>
         <button class="layui-btn" type="submit">提交</button>
     </form:form>
+
     <table class="layui-table">
         <colgroup>
             <col width="150">
@@ -21,6 +22,7 @@
                 <th>${map.k1}</th>
                 <th>${map.k2}</th>
                 <th>${map.k3}</th>
+                <th>${map.k4}</th>
                 <th>${map.k5}</th>
                 <th>${map.k6}</th>
                 <th>${map.k7}</th>
@@ -39,6 +41,7 @@
                 <td>${ms.j1}</td>
                 <td>${ms.j2}</td>
                 <td>${ms.j3}</td>
+                <td>${ms.j4}</td>
                 <td>${ms.j5}</td>
                 <td>${ms.j6}</td>
                 <td>${ms.j7}</td>
