@@ -3,35 +3,28 @@
 <mapper namespace="com.ydy.dao.ClothesDao">
     <sql id="clothesColumns">
         a.id AS "id",
-        a.creatordate AS creatordate,
-        a.updatedate AS updatedate,
+        a.createDate AS createDate,
+        a.updatedate AS updateDate,
         a.state AS state,
-        a.registerdate_d AS registerdate,
+        a.registerdate_d AS registerDate,
         a.colour_d AS colour,
-        a.style AS style,
+        a.style_d AS style,
         a.size_d AS sized,
         a.length_d AS lengthd,
         a.number_d AS numberd,
         a.company_d AS company,
         a.total_d AS total,
-        a.paymentstate_d AS paymentstate,
+        a.paymentstate_d AS paymentState,
         a.office_d AS office,
         a.head_d AS head,
         a.managers_d AS managers,
-        a.phone_d AS phone
+        a.phone_d AS phone,
+        a.price_d AS price
     </sql>
 
-    <select id="get" resultType="com.ydy.entity.Clothes">
+    <select id="get" resultType="Clothes">
         SELECT
         <include refid="clothesColumns"/>
-        FROM clothes_register a
-        WHERE a.id = #{id}
-    </select>
-
-    <select id="getId" resultType="string" parameterType="string">
-        SELECT
-        <!--<include refid="clothesColumns"/>-->
-        a.phone_d AS phone
         FROM clothes_register a
         WHERE a.id = #{id}
     </select>

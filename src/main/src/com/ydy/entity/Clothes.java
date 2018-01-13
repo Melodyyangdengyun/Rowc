@@ -16,7 +16,7 @@ public class Clothes extends DataEntity<Clothes>{
     /**
      *登记日期
      */
-    private Date registerdate;
+    private Date registerDate;
     /**
      * 颜色
      */
@@ -44,7 +44,7 @@ public class Clothes extends DataEntity<Clothes>{
     /**
      * 付款情况
      */
-    private String paymentstate;
+    private String paymentState;
     /**
      * 发放部门
      */
@@ -66,16 +66,12 @@ public class Clothes extends DataEntity<Clothes>{
      * 数量
      */
     private int numberd;
+    /**
+     * 单价
+     */
+    private int price;
 
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    public Date getRegisterdate() {
-        return registerdate;
-    }
-
-    public void setRegisterdate(Date registerdate) {
-        this.registerdate = registerdate;
-    }
 
     public String getColour() {
         return colour;
@@ -125,13 +121,6 @@ public class Clothes extends DataEntity<Clothes>{
         this.total = total;
     }
 
-    public String getPaymentstate() {
-        return paymentstate;
-    }
-
-    public void setPaymentstate(String paymentstate) {
-        this.paymentstate = paymentstate;
-    }
 
     public String getOffice() {
         return office;
@@ -172,4 +161,30 @@ public class Clothes extends DataEntity<Clothes>{
     public void setNumberd(int numberd) {
         this.numberd = numberd;
     }
+
+    public String getPaymentState() {
+        return paymentState;
+    }
+
+    public void setPaymentState(String paymentState) {
+        this.paymentState = paymentState;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+
 }

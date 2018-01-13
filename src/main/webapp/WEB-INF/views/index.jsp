@@ -5,7 +5,7 @@
     <title>出库登记表</title>
 </head>
 <body>
-    <form:form id="searchForm" action="${ctx}/user/statistics" method="post" enctype="multipart/form-data">
+    <form:form id="searchForm" action="${ctx}/clothes/statistics" method="post" enctype="multipart/form-data">
         <input type="file" value="上传" name="excelFile"/>
         <button class="layui-btn" type="submit">提交</button>
     </form:form>

@@ -34,8 +34,8 @@ import javax.servlet.http.HttpServletRequest;
  * @version 2018/1/11  19:50
  */
 @Controller
-@RequestMapping(value="/user/")
-public class UserController {
+@RequestMapping(value="/clothes/")
+public class ClothesController {
 
     @Autowired
     private ClothesService clothesService;
@@ -120,9 +120,8 @@ public class UserController {
     public String statistics() {
         Clothes clothes = new Clothes();
         clothes.setId("1");
-//        Clothes clothes1 = clothesService.get(clothes.getId());
-        String id = clothesService.getId("1");
-        System.out.println(id);
+        Clothes clothes1 = clothesService.get(clothes.getId());
+        System.out.println(clothes1.getId());
         return "statistics";
     }
 }
