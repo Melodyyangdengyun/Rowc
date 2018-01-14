@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -92,6 +93,7 @@ public class ClothesController {
                     if (j == 4 || j == 5 || j == 7 || j == 8 || j == 13) {
                         DecimalFormat df = new DecimalFormat("########");
                         Cell cell = row.getCell(j);
+                        double numericCellValue = cell.getNumericCellValue();
                         s = df.format(cell.getNumericCellValue());
                         if (!StringUtils.isEmpty(s)) {
                             map.put("j"+j, s);
@@ -105,12 +107,78 @@ public class ClothesController {
                 }
                 maps.add(map);
             }
+            DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+            for (Map<String, Object> map : maps) {
+                Clothes clothes = new Clothes();
+                Object j0 = map.get("j0");
+                Object j1 = map.get("j1");
+                Object j2 = map.get("j2");
+                Object j3 = map.get("j3");
+                Object j4 = map.get("j4");
+                Object j5 = map.get("j5");
+                Object j6 = map.get("j6");
+                Object j7 = map.get("j7");
+                Object j8 = map.get("j8");
+                Object j9 = map.get("j9");
+                Object j10 = map.get("j10");
+                Object j11 = map.get("j11");
+                Object j12 = map.get("j12");
+                Object j13 = map.get("j13");
+
+                if (j0 != null) {
+                    //登记日期
+                    Date parse = formater.parse(j0.toString());
+                    clothes.setRegisterDate(parse);
+                }
+                if (j1 != null) {
+                    clothes.setColour(j1.toString());
+                }
+                if (j2 != null) {
+                    clothes.setStyle(j2.toString());
+                }
+                if (j3 != null) {
+                    clothes.setSized(j3.toString());
+                }
+                if (j4 != null) {
+                    clothes.setLengthd(Integer.parseInt(j4.toString()));
+                }
+                if (j5 != null) {
+                    clothes.setNumberd(Integer.parseInt(j5.toString()));
+                }
+                if (j6 != null) {
+                    clothes.setCompany(j6.toString());
+                }
+                if (j7 != null) {
+                    clothes.setPrice(Integer.parseInt(j7.toString()));
+                }
+                if (j8 != null) {
+                    clothes.setTotal(Integer.parseInt(j8.toString()));
+                }
+                if (j9 != null) {
+                    clothes.setPaymentState(j9.toString());
+                }
+                if (j10 != null) {
+                    clothes.setOffice(j10.toString());
+                }
+                if (j11 != null) {
+                    clothes.setHead(j11.toString());
+                }
+                if (j12 != null) {
+                    clothes.setManagers(j12.toString());
+                }
+                if (j13 != null) {
+                    clothes.setPhone(j13.toString());
+                }
+                clothesService.save(clothes);
+            }
             model.addAttribute("maps", maps);
             model.addAttribute("map", titleMap);
 
         } catch (InvalidFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return "idnex3";
