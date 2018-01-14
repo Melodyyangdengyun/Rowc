@@ -16,7 +16,7 @@ public class Clothes extends DataEntity<Clothes>{
     /**
      *登记日期
      */
-    private Date registerDate;
+    private String registerDate;
     /**
      * 颜色
      */
@@ -32,7 +32,7 @@ public class Clothes extends DataEntity<Clothes>{
     /**
      * 长度
      */
-    private int lengthd;
+    private String lengthd;
     /**
      * 单位/件套
      */
@@ -40,7 +40,7 @@ public class Clothes extends DataEntity<Clothes>{
     /**
      * 总价
      */
-    private int total;
+    private String total;
     /**
      * 付款情况
      */
@@ -65,11 +65,11 @@ public class Clothes extends DataEntity<Clothes>{
     /**
      * 数量
      */
-    private int numberd;
+    private String numberd;
     /**
      * 单价
      */
-    private int price;
+    private String price;
 
 
 
@@ -97,14 +97,6 @@ public class Clothes extends DataEntity<Clothes>{
         this.sized = sized;
     }
 
-    public int getLengthd() {
-        return lengthd;
-    }
-
-    public void setLengthd(int lengthd) {
-        this.lengthd = lengthd;
-    }
-
     public String getCompany() {
         return company;
     }
@@ -112,15 +104,6 @@ public class Clothes extends DataEntity<Clothes>{
     public void setCompany(String company) {
         this.company = company;
     }
-
-    public int getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
-    }
-
 
     public String getOffice() {
         return office;
@@ -154,12 +137,21 @@ public class Clothes extends DataEntity<Clothes>{
         this.phone = phone;
     }
 
-    public int getNumberd() {
-        return numberd;
+
+    public String getRegisterDate() {
+        return registerDate;
     }
 
-    public void setNumberd(int numberd) {
-        this.numberd = numberd;
+    public void setRegisterDate(String registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public String getLengthd() {
+        return lengthd;
+    }
+
+    public void setLengthd(String lengthd) {
+        this.lengthd = lengthd;
     }
 
     public String getPaymentState() {
@@ -170,21 +162,27 @@ public class Clothes extends DataEntity<Clothes>{
         this.paymentState = paymentState;
     }
 
-    public int getPrice() {
+    public String getNumberd() {
+        return numberd;
+    }
+
+    public void setNumberd(String numberd) {
+        this.numberd = numberd;
+    }
+
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    public Date getRegisterDate() {
-        return registerDate;
+    public String getTotal() {
+        return total;
     }
 
-    public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
+    public void setTotal(String total) {
+        this.total = total;
     }
-
 }

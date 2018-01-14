@@ -7,11 +7,6 @@
 <body>
     <form:form id="searchForm" action="${ctx}/clothes/statistics" method="post" enctype="multipart/form-data">
         <table class="layui-table">
-            <colgroup>
-                <col width="150">
-                <col width="200">
-                <col>
-            </colgroup>
             <thead>
             <tr>
                 <th>${map.k0}</th>

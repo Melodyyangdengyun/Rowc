@@ -68,46 +68,43 @@ public class ClothesController {
                 titleMap.put("k"+k, s);
             }
             List<Map<String,Object>> maps = Lists.newArrayList();
+            DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
             for (int i = 1; i < lastDataRowNum; i++) {
                 Map<String,Object> map = Maps.newHashMap();
                 for (int j = 0; j < lastCellNum; j++) {
-                    String s;
                     Row row = ei.getRow(i);
-                    if (j == 0) {
-                        //日期
-                        Cell cell1 = row.getCell(j);
-                        if (0 == cell1.getCellType()) {
-                            //判断是否为日期类型
-                            if (HSSFDateUtil.isCellDateFormatted(cell1)) {
-                                //用于转化为日期格式
-                                Date d = cell1.getDateCellValue();
-                                DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-                                s = formater.format(d);
-                                if (!StringUtils.isEmpty(s)) {
-                                    map.put("j"+j, s);
-                                }
-                                continue;
-                            }
+//                    if (j == 0) {
+//                        Object cellValue = ei.getCellValue(row, j);
+//                        if (cellValue != null) {
+//                            if (!cellValue.toString().trim().equals("")) {
+//                                String trim = cellValue.toString().trim();
+//                                s = formater.format(trim);
+//                                map.put("j"+j, s);
+//                                continue;
+//                            }
+//                        }
+//                    }
+//                    if (j == 4 || j == 5 || j == 7 || j == 8 || j == 13) {
+//                        DecimalFormat df = new DecimalFormat("########");
+//                        Cell cell = row.getCell(j);
+////                        Object numericCellValue = "";
+////                        numericCellValue = cell.getNumericCellValue();
+//                        double cellValue = (double) ei.getCellValue(row, j);
+//                            s = df.format(cellValue);
+//                            map.put("j"+j, s);
+//                        continue;
+//                    }
+                    Object cellValue = ei.getCellValue(row, j);
+                    if (cellValue != null) {
+                        String s1 = cellValue.toString();
+                        if(!s1.trim().equals("")){
+                            map.put("j"+j, s1);
+                            continue;
                         }
-                    }
-                    if (j == 4 || j == 5 || j == 7 || j == 8 || j == 13) {
-                        DecimalFormat df = new DecimalFormat("########");
-                        Cell cell = row.getCell(j);
-                        double numericCellValue = cell.getNumericCellValue();
-                        s = df.format(cell.getNumericCellValue());
-                        if (!StringUtils.isEmpty(s)) {
-                            map.put("j"+j, s);
-                        }
-                        continue;
-                    }
-                    s = ei.getCellValue(row, j).toString();
-                    if (!StringUtils.isEmpty(s)) {
-                        map.put("j"+j, s);
                     }
                 }
                 maps.add(map);
             }
-            DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
             for (Map<String, Object> map : maps) {
                 Clothes clothes = new Clothes();
                 Object j0 = map.get("j0");
@@ -127,8 +124,8 @@ public class ClothesController {
 
                 if (j0 != null) {
                     //登记日期
-                    Date parse = formater.parse(j0.toString());
-                    clothes.setRegisterDate(parse);
+//                    Date parse = formater.parse(j0.toString());
+                    clothes.setRegisterDate(j0.toString());
                 }
                 if (j1 != null) {
                     clothes.setColour(j1.toString());
@@ -140,19 +137,19 @@ public class ClothesController {
                     clothes.setSized(j3.toString());
                 }
                 if (j4 != null) {
-                    clothes.setLengthd(Integer.parseInt(j4.toString()));
+                    clothes.setLengthd(j4.toString());
                 }
                 if (j5 != null) {
-                    clothes.setNumberd(Integer.parseInt(j5.toString()));
+                    clothes.setNumberd(j5.toString());
                 }
                 if (j6 != null) {
                     clothes.setCompany(j6.toString());
                 }
                 if (j7 != null) {
-                    clothes.setPrice(Integer.parseInt(j7.toString()));
+                    clothes.setPrice(j7.toString());
                 }
                 if (j8 != null) {
-                    clothes.setTotal(Integer.parseInt(j8.toString()));
+                    clothes.setTotal(j8.toString());
                 }
                 if (j9 != null) {
                     clothes.setPaymentState(j9.toString());
@@ -178,9 +175,10 @@ public class ClothesController {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
+//        catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         return "idnex3";
     }
 
@@ -192,17 +190,17 @@ public class ClothesController {
         clothes.setColour("黄色");
         clothes.setCompany("件");
         clothes.setHead("我");
-        clothes.setLengthd(156);
+        clothes.setLengthd("156");
         clothes.setManagers("不知道");
-        clothes.setNumberd(5);
+        clothes.setNumberd("5");
         clothes.setOffice("珠海");
         clothes.setPaymentState("未收到");
         clothes.setPhone("18926725135");
-        clothes.setPrice(30);
-        clothes.setRegisterDate(new Date());
+        clothes.setPrice("30");
+        clothes.setRegisterDate("2017/2/1");
         clothes.setSized("M");
         clothes.setStyle("短袖");
-        clothes.setTotal(150);
+        clothes.setTotal("150");
         clothesService.save(clothes);
         return "index";
     }
