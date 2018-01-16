@@ -7,6 +7,9 @@ import com.ydy.parent.CrudService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 服装登记Service
  * @author ydy
@@ -22,5 +25,9 @@ public class ClothesService extends CrudService<ClothesDao,Clothes> {
     public String getId(String s) {
         System.out.println(s);
         return dao.getId(s);
+    }
+
+    public List<Map<String,Object>> findListAll() {
+        return dao.findListAll();
     }
 }

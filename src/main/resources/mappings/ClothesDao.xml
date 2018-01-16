@@ -29,6 +29,13 @@
         WHERE a.id = #{id}
     </select>
 
+    <select id="findListAll" resultType="Map">
+        SELECT
+        <include refid="clothesColumns"/>
+        FROM clothes_register a
+        WHERE state = #{state}
+    </select>
+
     <!-- 插入登记 -->
     <insert id="insert">
         INSERT INTO clothes_register(
