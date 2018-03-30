@@ -29,6 +29,12 @@
         WHERE a.id = #{id}
     </select>
 
+    <select id="findList" resultType="com.ydy.entity.Clothes">
+        SELECT
+        <include refid="clothesColumns"/>
+        FROM clothes_register a
+    </select>
+
     <select id="findListAll" resultType="Map">
         SELECT
         <include refid="clothesColumns"/>

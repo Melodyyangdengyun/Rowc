@@ -51,7 +51,7 @@
                     <a class="" href="javascript:;">测试</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#">登记统计</a></dd>
-                        <dd><a href="${ctx}/clothes/listAll">查看</a></dd>
+                        <dd><a href="${ctx}/clothes/listAll1">查看</a></dd>
                         <dd><a href="javascript:;">列表三</a></dd>
                         <dd><a href="">超链接</a></dd>
                     </dl>

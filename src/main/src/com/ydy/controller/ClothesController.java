@@ -251,6 +251,13 @@ public class ClothesController {
             e.printStackTrace();
         }
 
-        return "idnex3";
+        return "index3";
     }
+
+    @RequestMapping(value = "listAll1")
+     public String listAll1(Model model) {
+        List<Clothes> list = clothesService.findList();
+        model.addAttribute("list", list);
+        return "index3";
+     }
 }

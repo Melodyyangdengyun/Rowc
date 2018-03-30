@@ -42,4 +42,10 @@ public interface CrudDao<T> extends BaseDao{
      * @return
      */
     List<Map<String,Object>> findListAll();
+
+    /**
+     * 查询所有数据
+     * @return
+     */
+    List<T> findList();
 }
