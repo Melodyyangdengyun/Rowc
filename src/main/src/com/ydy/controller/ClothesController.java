@@ -51,41 +51,31 @@ public class ClothesController {
 
     @RequestMapping(value = "listAll")
     public String listAll(Model model) {
-
 //      List<Map<String,Object>> listAll = clothesService.findListAll();
-        Map<String, Object>       map  = Maps.newHashMap();
+        Map<String, Object> map = Maps.newHashMap();
         List<Map<String, Object>> list = Lists.newArrayList();
-
         map.put("id", "666");
         list.add(map);
-
         String json = JSONUtils.toJSONString(list);
-
         model.addAttribute("json", json);
-
         return "clothesListAll";
     }
 
     @RequestMapping(value = "listAll2")
     @ResponseBody
     public String listAll2(Model model) {
-        Map<String, Object>       map  = Maps.newHashMap();
+        Map<String, Object> map = Maps.newHashMap();
         List<Map<String, Object>> list = Lists.newArrayList();
-
         map.put("id", "666");
         list.add(map);
-
         String cols = JSONUtils.toJSONString(list);
-
         cols = cols.substring(1, cols.length());
         cols = cols.substring(0, cols.length() - 1);
-
         return cols;
     }
 
     @RequestMapping(value = "statistics")
     public String statistics(Clothes clothes) {
-
 //      clothes.setId("1");
 //      Clothes clothes1 = clothesService.get(clothes.getId());
 //      System.out.println(clothes1.getId());
@@ -104,7 +94,6 @@ public class ClothesController {
         clothes.setStyle("短袖");
         clothes.setTotal("150");
         clothesService.save(clothes);
-
         return "index";
     }
 
@@ -118,57 +107,43 @@ public class ClothesController {
 
     /**
      * excel文件解析返回
+     *
      * @param excelFile 文件
      * @param request
      * @param model
      * @return
      */
-    @RequestMapping(
-        value  = "upload",
-        method = RequestMethod.POST
-    )
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
     public String uploading(@RequestParam("excelFile") MultipartFile excelFile, HttpServletRequest request,
                             ModelMap model) {
         try {
-            ImportExcel         ei             = new ImportExcel(excelFile, 1, 0);
-            int                 lastDataRowNum = ei.getLastDataRowNum();
-            int                 lastCellNum    = ei.getLastCellNum();
-            Map<String, Object> titleMap       = Maps.newHashMap();
-
+            ImportExcel ei = new ImportExcel(excelFile, 1, 0);
+            int lastDataRowNum = ei.getLastDataRowNum();
+            int lastCellNum = ei.getLastCellNum();
+            Map<String, Object> titleMap = Maps.newHashMap();
             for (int k = 0; k < lastCellNum; k++) {
-                Row    row = ei.getRow(0);
-                String s   = ei.getCellValue(row, k).toString();
-
+                Row row = ei.getRow(0);
+                String s = ei.getCellValue(row, k).toString();
                 titleMap.put("k" + k, s);
             }
-
-            List<Map<String, Object>> maps     = Lists.newArrayList();
-            DateFormat                formater = new SimpleDateFormat("yyyy-MM-dd");
-
+            List<Map<String, Object>> maps = Lists.newArrayList();
+            DateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
             for (int i = 1; i < lastDataRowNum; i++) {
                 Map<String, Object> map = Maps.newHashMap();
-
                 for (int j = 0; j < lastCellNum; j++) {
                     Row row = ei.getRow(i);
-
                     if ((j == 4) || (j == 5) || (j == 7) || (j == 8) || (j == 13)) {
-
 //                      DecimalFormat df = new DecimalFormat("########");
                         Cell cell = row.getCell(j);
-
                         if (cell != null) {
-                            DecimalFormat df           = new DecimalFormat("########");
-                            String        whatYourWant = df.format(cell.getNumericCellValue());
-
+                            DecimalFormat df = new DecimalFormat("0");
+                            String whatYourWant = df.format(cell.getNumericCellValue());
                             map.put("j" + j, whatYourWant);
                         }
-
                         continue;
                     }
-
                     if (j == 0) {
                         Cell dateCell = row.getCell(0);
-
                         if (dateCell != null) {
                             Date dateCellValue = dateCell.getDateCellValue();
 
@@ -176,42 +151,36 @@ public class ClothesController {
                                 map.put("j" + j, formater.format(dateCellValue));
                             }
                         }
-
                         continue;
                     }
-
                     Object cellValue = ei.getCellValue(row, j);
-
                     if (cellValue != null) {
                         String s1 = cellValue.toString();
-
                         if (!s1.trim().equals("")) {
                             map.put("j" + j, s1);
-
                             continue;
                         }
                     }
                 }
-
                 maps.add(map);
             }
 
             for (Map<String, Object> map : maps) {
                 Clothes clothes = new Clothes();
-                Object  j0      = map.get("j0");
-                Object  j1      = map.get("j1");
-                Object  j2      = map.get("j2");
-                Object  j3      = map.get("j3");
-                Object  j4      = map.get("j4");
-                Object  j5      = map.get("j5");
-                Object  j6      = map.get("j6");
-                Object  j7      = map.get("j7");
-                Object  j8      = map.get("j8");
-                Object  j9      = map.get("j9");
-                Object  j10     = map.get("j10");
-                Object  j11     = map.get("j11");
-                Object  j12     = map.get("j12");
-                Object  j13     = map.get("j13");
+                Object j0 = map.get("j0");
+                Object j1 = map.get("j1");
+                Object j2 = map.get("j2");
+                Object j3 = map.get("j3");
+                Object j4 = map.get("j4");
+                Object j5 = map.get("j5");
+                Object j6 = map.get("j6");
+                Object j7 = map.get("j7");
+                Object j8 = map.get("j8");
+                Object j9 = map.get("j9");
+                Object j10 = map.get("j10");
+                Object j11 = map.get("j11");
+                Object j12 = map.get("j12");
+                Object j13 = map.get("j13");
 
                 if (j0 != null) {
 
@@ -285,6 +254,3 @@ public class ClothesController {
         return "idnex3";
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
