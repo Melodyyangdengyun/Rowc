@@ -18,11 +18,4 @@
 <script src='${ctxStatic}/js/jquery.fancybox-1.3.1.pack.js'></script>
 <link rel="stylesheet" href="${ctxStatic}/layui/css/layui.css">
 <script src="${ctxStatic}/layui/layui.all.js" charset="utf-8"></script>
-<script>
-    //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
-    ;!function(){
-        var layer = layui.layer
-            ,form = layui.form;
-        layer.log('Hello World');
-    }();
-</script>
+

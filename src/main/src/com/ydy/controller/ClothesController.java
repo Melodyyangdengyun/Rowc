@@ -1,23 +1,16 @@
 package com.ydy.controller;
 
-import java.io.IOException;
-
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.alibaba.druid.support.json.JSONUtils;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.ydy.entity.Clothes;
+import com.ydy.service.ClothesService;
+import com.ydy.utils.DateUtils;
+import com.ydy.utils.ImportExcel;
+import com.ydy.utils.LayDataTemplate;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-
-import org.json.JSONObject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,17 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.alibaba.druid.support.json.JSONUtils;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import com.ydy.entity.Clothes;
-import com.ydy.service.ClothesService;
-import com.ydy.utils.ImportExcel;
-
-import sun.security.util.Length;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author ydy
@@ -89,7 +79,7 @@ public class ClothesController {
         clothes.setPaymentState("未收到");
         clothes.setPhone("18926725135");
         clothes.setPrice("30");
-        clothes.setRegisterDate("2017/2/1");
+//        clothes.setRegisterDate("2017/2/1");
         clothes.setSized("M");
         clothes.setStyle("短袖");
         clothes.setTotal("150");
@@ -185,7 +175,7 @@ public class ClothesController {
                 if (j0 != null) {
 
                     // 登记日期
-                    clothes.setRegisterDate(j0.toString());
+                    clothes.setRegisterDate(DateUtils.parseDate(j0));
                 }
 
                 if (j1 != null) {
@@ -255,9 +245,30 @@ public class ClothesController {
     }
 
     @RequestMapping(value = "listAll1")
-     public String listAll1(Model model) {
-        List<Clothes> list = clothesService.findList();
-        model.addAttribute("list", list);
+    public String listAll1(Model model) {
+//        List<Clothes> list = clothesService.findList();
+//        model.addAttribute("list", list);
         return "index3";
-     }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "listMap")
+    public Map<String,Object> listMap(){
+        List<Clothes> list = clothesService.findList();
+//        list.stream().filter(x->x.getRegisterDate() !=null && !x.getRegisterDate().equals("")).forEach(y->{
+////            String s = DateUtils.formatDate(y.getRegisterDate(), "yyyy-MM-dd");
+////            Date date = DateUtils.parseDate(s);
+////            y.setRegisterDate(date);
+////        });
+        list.forEach(x->{
+//            x.getRegisterDate()
+        });
+        Map<String,Object> map = Maps.newHashMap();
+        map.put(LayDataTemplate.CODE, 0);
+        map.put(LayDataTemplate.MSG, "");
+        map.put(LayDataTemplate.COUNT,list.size());
+        map.put(LayDataTemplate.DATA, list);
+
+        return map;
+    }
 }

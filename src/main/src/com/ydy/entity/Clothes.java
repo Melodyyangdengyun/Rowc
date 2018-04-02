@@ -1,8 +1,6 @@
 package com.ydy.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ydy.parent.DataEntity;
-
 import java.util.Date;
 
 /**
@@ -16,7 +14,7 @@ public class Clothes extends DataEntity<Clothes>{
     /**
      *登记日期
      */
-    private String registerDate;
+    private Date registerDate;
     /**
      * 颜色
      */
@@ -138,11 +136,11 @@ public class Clothes extends DataEntity<Clothes>{
     }
 
 
-    public String getRegisterDate() {
+    public Date getRegisterDate() {
         return registerDate;
     }
 
-    public void setRegisterDate(String registerDate) {
+    public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
     }
 

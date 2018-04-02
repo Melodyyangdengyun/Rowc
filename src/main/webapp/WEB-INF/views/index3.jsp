@@ -3,63 +3,38 @@
 <html>
 <head>
     <title>出库登记表</title>
+
 </head>
 <body>
-<%--<form:form id="searchForm" action="${ctx}/clothes/statistics" method="post" enctype="multipart/form-data">
-    <table class="layui-table">
-        <thead>
-        <tr>
-            <th>${map.k0}</th>
-            <th>${map.k1}</th>
-            <th>${map.k2}</th>
-            <th>${map.k3}</th>
-            <th>${map.k4}</th>
-            <th>${map.k5}</th>
-            <th>${map.k6}</th>
-            <th>${map.k7}</th>
-            <th>${map.k8}</th>
-            <th>${map.k9}</th>
-            <th>${map.k10}</th>
-            <th>${map.k11}</th>
-            <th>${map.k12}</th>
-            <th>${map.k13}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="ms" items="${maps}">
-            <tr>
-                <td>${ms.j0}</td>
-                <td>${ms.j1}</td>
-                <td>${ms.j2}</td>
-                <td>${ms.j3}</td>
-                <td>${ms.j4}</td>
-                <td>${ms.j5}</td>
-                <td>${ms.j6}</td>
-                <td>${ms.j7}</td>
-                <td>${ms.j8}</td>
-                <td>${ms.j9}</td>
-                <td>${ms.j10}</td>
-                <td>${ms.j11}</td>
-                <td>${ms.j12}</td>
-                <td>${ms.j13}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-<button class="layui-btn" type="submit">提交</button>
-</form:form>--%>
+<table id="demo" lay-filter="test"></table>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
 
-<table>
-    <tbody>
-    <tr>
-        <td>日期</td>
-    </tr>
-    </tbody>
-    <c:forEach items="${list}" var="cloth">
-        <tr>
-            <td>${cloth.registerDate}</td>
-        </tr>
-    </c:forEach>
-</table>
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 540
+            ,url: '${ctx}/clothes/listMap' //数据接口
+            ,page: true //开启分页
+            ,cols: [[ //表头
+                {field: 'registerDate', title: '日期', width:120, sort: true, fixed: 'left',templet:'<div>{{ layui.laytpl.toDateString(d.registerDate*1000) }}</div>'}
+                ,{field: 'colour', title: '颜色', width:80}
+                ,{field: 'style', title: '款式', width:80}
+                ,{field: 'sized', title: '尺寸/码', width:80}
+                ,{field: 'lengthd', title: '长度/cm', width:80}
+                ,{field: 'numberd', title: '数量', width:80}
+                ,{field: 'company', title: '件/套', width:80}
+                ,{field: 'price', title: '服装单价/元', width:80}
+                ,{field: 'total', title: '总价/元', width:80}
+                ,{field: 'paymentState', title: '付款情况', width:80}
+                ,{field: 'office', title: '发放部门/工程名称', width:80}
+                ,{field: 'head', title: '部门/工程负责人', width:80}
+                ,{field: 'managers', title: '经办人', width:80}
+                ,{field: 'phone', title: '电话', width:80}
+            ]]
+        });
+    });
+</script>
 </body>
 </html>

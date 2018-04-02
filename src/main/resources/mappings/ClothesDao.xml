@@ -33,6 +33,7 @@
         SELECT
         <include refid="clothesColumns"/>
         FROM clothes_register a
+        limit 10
     </select>
 
     <select id="findListAll" resultType="Map">
