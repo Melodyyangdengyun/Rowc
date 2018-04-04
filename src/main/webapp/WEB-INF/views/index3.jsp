@@ -3,7 +3,6 @@
 <html>
 <head>
     <title>出库登记表</title>
-
 </head>
 <body>
 <table id="demo" lay-filter="test"></table>
@@ -18,7 +17,7 @@
             ,url: '${ctx}/clothes/listMap' //数据接口
             ,page: true //开启分页
             ,cols: [[ //表头
-                {field: 'registerDate', title: '日期', width:120, sort: true, fixed: 'left',templet:'<div>{{ layui.laytpl.toDateString(d.registerDate*1000) }}</div>'}
+                {field: 'registerDate', title: '日期', width:120, sort: true, fixed: 'left',type:'date'}
                 ,{field: 'colour', title: '颜色', width:80}
                 ,{field: 'style', title: '款式', width:80}
                 ,{field: 'sized', title: '尺寸/码', width:80}
@@ -36,5 +35,6 @@
         });
     });
 </script>
+
 </body>
 </html>

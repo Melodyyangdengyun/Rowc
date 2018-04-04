@@ -3,14 +3,20 @@ package com.ydy.controller;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.gson.Gson;
 import com.ydy.entity.Clothes;
+import com.ydy.entity.JSONBase;
+import com.ydy.entity.JSONBaseX;
+import com.ydy.entity.Services;
 import com.ydy.service.ClothesService;
 import com.ydy.utils.DateUtils;
 import com.ydy.utils.ImportExcel;
 import com.ydy.utils.LayDataTemplate;
+import net.sf.json.JSONArray;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +26,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import java.io.*;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author ydy
@@ -253,22 +258,90 @@ public class ClothesController {
 
     @ResponseBody
     @RequestMapping(value = "listMap")
-    public Map<String,Object> listMap(){
+    public Map<String, Object> listMap() {
         List<Clothes> list = clothesService.findList();
 //        list.stream().filter(x->x.getRegisterDate() !=null && !x.getRegisterDate().equals("")).forEach(y->{
 ////            String s = DateUtils.formatDate(y.getRegisterDate(), "yyyy-MM-dd");
 ////            Date date = DateUtils.parseDate(s);
 ////            y.setRegisterDate(date);
 ////        });
-        list.forEach(x->{
-//            x.getRegisterDate()
-        });
-        Map<String,Object> map = Maps.newHashMap();
+//        list.forEach(x->{
+//            x.getRegisterDate();
+//
+//        });
+        Map<String, Object> map = Maps.newHashMap();
         map.put(LayDataTemplate.CODE, 0);
         map.put(LayDataTemplate.MSG, "");
-        map.put(LayDataTemplate.COUNT,list.size());
+        map.put(LayDataTemplate.COUNT, list.size());
         map.put(LayDataTemplate.DATA, list);
 
+//        Clothes clothes = list.get(0);
+//        JSONArray json = JSONArray.fromObject(clothes);
+//        System.out.println(json);
+
         return map;
+    }
+
+    @RequestMapping(value = "index4")
+    public String index4() {
+        String path = "E://JSON/detail.json";
+        String encoding = "UTF-8";
+        File file = new File(path);
+        Long filelength = file.length();
+        byte[] filecontent = new byte[filelength.intValue()];
+        try {
+            FileInputStream in = new FileInputStream(file);
+            in.read(filecontent);
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONBaseX jsonBaseX = null;
+        try {
+            String s = new String(filecontent, encoding);
+            Gson gson = new Gson();
+            jsonBaseX = gson.fromJson(s, JSONBaseX.class);
+            System.out.println(jsonBaseX);
+        } catch (UnsupportedEncodingException e) {
+            System.err.println("The OS does not support " + encoding);
+            e.printStackTrace();
+            return null;
+        }
+
+        List<JSONBase> jsonBaseList = jsonBaseX.getList();
+        Map<String, List<JSONBase>> jsonBaseMap = new HashMap<>();
+        for (JSONBase jsonBase : jsonBaseList) {
+            List<JSONBase> tempList = jsonBaseMap.get(jsonBase.getCarnum());
+            if (tempList == null) {
+                tempList = new ArrayList<>();
+                tempList.add(jsonBase);
+                jsonBaseMap.put(jsonBase.getCarnum(), tempList);
+            }else {
+                tempList.add(jsonBase);
+            }
+        }
+        List<Services> servicesList = new ArrayList<>();
+        for (String s : jsonBaseMap.keySet()) {
+            Services services = new Services();
+//            System.out.println(jsonBaseMap.get(s));
+            List<JSONBase> jsonBaseList1 = jsonBaseMap.get(s);
+            jsonBaseList1.forEach(x->{
+                System.out.println(x.getCarnum()+"-------");
+
+            });
+//            BeanUtils.copyProperties(jsonBaseList1,services);
+//            servicesList.add(services);
+        }
+
+//        servicesList.forEach(x->{
+//            System.out.println(x.getCarnum());
+//        });
+
+
+
+
+        return "index4";
     }
 }
