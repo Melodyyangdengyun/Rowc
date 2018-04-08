@@ -7,6 +7,8 @@
           <element id="module-output" name="Rowc" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.13.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.13.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:4.3.13.RELEASE" />

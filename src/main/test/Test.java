@@ -2,6 +2,8 @@
 import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,13 +17,15 @@ import java.util.Map;
  */
 public class Test {
     public static void main(String[] args) {
+//        private static Logger log = LoggerFactory.getLogger(ImportExcel.class);
         Map<String,Object> map = Maps.newHashMap();
-        map.put("kk", "");
-        Object hh = map.get("dd");
+        map.put("kk", "dawdawdaw");
+        Object hh = map.get("kk");
         if (hh !=null) {
             System.out.println("ddd");
             System.out.println(hh);
             System.out.println(hh);
         }
+        System.out.println("kkk");
     }
 }
