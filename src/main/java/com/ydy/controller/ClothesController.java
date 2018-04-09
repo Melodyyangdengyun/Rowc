@@ -327,10 +327,10 @@ public class ClothesController {
             Services services = new Services();
 //            System.out.println(jsonBaseMap.get(s));
             List<JSONBase> jsonBaseList1 = jsonBaseMap.get(s);
-            jsonBaseList1.forEach(x->{
-                System.out.println(x.getCarnum()+"-------");
-
-            });
+//            jsonBaseList1.forEach(x->{
+//                System.out.println(x.getCarnum()+"-------");
+//
+//            });
 //            BeanUtils.copyProperties(jsonBaseList1,services);
 //            servicesList.add(services);
         }
