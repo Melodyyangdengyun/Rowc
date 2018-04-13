@@ -12,11 +12,9 @@ import com.ydy.service.ClothesService;
 import com.ydy.utils.DateUtils;
 import com.ydy.utils.ImportExcel;
 import com.ydy.utils.LayDataTemplate;
-import net.sf.json.JSONArray;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -259,7 +257,7 @@ public class ClothesController {
     @ResponseBody
     @RequestMapping(value = "listMap")
     public Map<String, Object> listMap() {
-        List<Clothes> list = clothesService.findList();
+        List<Clothes> list = clothesService.findList("clothes");
 //        list.stream().filter(x->x.getRegisterDate() !=null && !x.getRegisterDate().equals("")).forEach(y->{
 ////            String s = DateUtils.formatDate(y.getRegisterDate(), "yyyy-MM-dd");
 ////            Date date = DateUtils.parseDate(s);
