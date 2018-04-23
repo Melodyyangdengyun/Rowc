@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="rowc">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="rowc.war">
-      <element id="artifact" artifact-name="Rowc:war exploded" />
-    </root>
-  </artifact>
-</component>

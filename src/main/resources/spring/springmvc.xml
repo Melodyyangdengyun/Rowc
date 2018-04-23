@@ -42,6 +42,14 @@
         <property name="maxInMemorySize" value="40960" />
     </bean>
 
+    <!-- 拦截器配置，拦截顺序：先执行后定义的，排在第一位的最后执行。-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="com.ydy.utils.LogInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--支持Json的Bean,配置ViewResolver。 可以用多个ViewResolver。 使用order属性排序。 InternalResourceViewResolver放在最后。 -->
     <bean
             class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
