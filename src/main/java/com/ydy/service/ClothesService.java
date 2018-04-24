@@ -4,6 +4,7 @@ import com.ydy.dao.ClothesDao;
 import com.ydy.entity.Clothes;
 import com.ydy.parent.CrudService;
 
+import com.ydy.utils.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,5 +30,9 @@ public class ClothesService extends CrudService<ClothesDao,Clothes> {
 
     public List<Map<String,Object>> findListAll() {
         return dao.findListAll();
+    }
+
+    public Page<Clothes> findPage(Page<Clothes> page, Clothes clothes) {
+        return super.findPage(page,clothes);
     }
 }

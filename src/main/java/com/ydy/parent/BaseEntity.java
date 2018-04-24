@@ -1,7 +1,10 @@
 package com.ydy.parent;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ydy.utils.Page;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 
 /**
@@ -16,6 +19,8 @@ public abstract class BaseEntity<T> implements Serializable{
      * 实体编号（唯一标识）
      */
     protected String id;
+
+    protected Page<T> page;
 
     public String getId() {
         return id;
@@ -32,6 +37,20 @@ public abstract class BaseEntity<T> implements Serializable{
     public BaseEntity(String id) {
         this();
         this.id = id;
+    }
+
+    @JsonIgnore
+    @XmlTransient
+    public Page<T> getPage() {
+        if (page == null){
+            page = new Page<T>();
+        }
+        return page;
+    }
+
+    public Page<T> setPage(Page<T> page) {
+        this.page = page;
+        return page;
     }
 
     /**

@@ -1,6 +1,8 @@
 package com.ydy.parent;
 
+import com.ydy.entity.Clothes;
 import com.ydy.utils.CacheUtils;
+import com.ydy.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -82,5 +84,17 @@ public abstract class CrudService<D extends CrudDao<T>, T extends DataEntity<T>>
         entity.preUpdate();
         dao.update(entity);
         CacheUtils.remove("listDataCache",entity.toString());
+    }
+
+    /**
+     * 分页查询
+     * @param page 分页对象
+     * @param entity 实体类
+     * @return
+     */
+    public Page<T> findPage(Page<T> page, T entity) {
+        entity.setPage(page);
+        page.setList(dao.findList());
+        return page;
     }
 }

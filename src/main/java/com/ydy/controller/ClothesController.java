@@ -12,6 +12,7 @@ import com.ydy.service.ClothesService;
 import com.ydy.utils.DateUtils;
 import com.ydy.utils.ImportExcel;
 import com.ydy.utils.LayDataTemplate;
+import com.ydy.utils.Page;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -44,7 +46,6 @@ public class ClothesController {
 
     @RequestMapping(value = "listAll")
     public String listAll(Model model) {
-//      List<Map<String,Object>> listAll = clothesService.findListAll();
         Map<String, Object> map = Maps.newHashMap();
         List<Map<String, Object>> list = Lists.newArrayList();
         map.put("id", "666");
@@ -341,5 +342,12 @@ public class ClothesController {
 
 
         return "index4";
+    }
+
+    @RequestMapping(value = "listPage")
+    public String listPage(HttpServletRequest request, HttpServletResponse response,Clothes clothes,Model model) {
+        Page<Clothes> page = clothesService.findPage(new Page<Clothes>(request,response),clothes);
+        model.addAttribute("page", page);
+        return "rowc/index5";
     }
 }

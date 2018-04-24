@@ -13,7 +13,7 @@ public class Clothes extends DataEntity<Clothes>{
     private static final long serialVersionUID = 1L;
 
     /**
-     *登记日期
+     *@registerDate登记日期
      */
     private Date registerDate;
     /**
@@ -90,6 +90,7 @@ public class Clothes extends DataEntity<Clothes>{
 
     public String getSized() {
         return sized;
+
     }
 
     public void setSized(String sized) {
